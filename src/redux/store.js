@@ -8,6 +8,7 @@ import sellerReducer from "./slices/sellerSlice";
 import cartReducer from "./slices/cartSlice";
 import orderReducer from "./slices/orderSlice";
 import reviewReducer from "./slices/reviewSlice";
+import aiReducer from "./slices/aiSlice";
 
 export const store = configureStore({
   reducer: {
@@ -19,5 +20,6 @@ export const store = configureStore({
     cart: cartReducer,
     order: orderReducer,
     review: reviewReducer,
+    ai: aiReducer,
   },
 });
