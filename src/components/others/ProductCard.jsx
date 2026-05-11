@@ -1,13 +1,44 @@
 import { Link } from "react-router-dom";
+
 import { FiHeart, FiMapPin, FiShoppingCart, FiStar } from "react-icons/fi";
-import MoodBadge from "./MoodBadge";
+
+import { useDispatch, useSelector } from "react-redux";
+
+import MoodBadge from "../others/MoodBadge";
+
+import { addToCart } from "../../redux/slices/cartSlice";
+
+import { showErrorToast, showSuccessToast } from "../others/Toast";
 
 const ProductCard = ({ product }) => {
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.auth);
+
+  const handleAddToCart = async () => {
+    if (!user) {
+      return showErrorToast("Please login to add items to cart");
+    }
+
+    try {
+      await dispatch(
+        addToCart({
+          productId: product._id,
+          quantity: 1,
+        }),
+      ).unwrap();
+
+      showSuccessToast("Product added to cart");
+    } catch (error) {
+      showErrorToast(error);
+    }
+  };
+
   return (
     <div className="group overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
       <div className="relative overflow-hidden">
         <img
-          src={product?.image}
+          src={product?.images?.[0]}
           alt={product?.name}
           className="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
         />
@@ -16,9 +47,11 @@ const ProductCard = ({ product }) => {
           <FiHeart size={18} />
         </button>
 
-        <div className="absolute left-4 top-4">
-          <MoodBadge mood={product?.mood} />
-        </div>
+        {product?.moodTags?.[0] && (
+          <div className="absolute left-4 top-4">
+            <MoodBadge mood={product.moodTags[0]} />
+          </div>
+        )}
       </div>
 
       <div className="space-y-4 p-5">
@@ -37,7 +70,8 @@ const ProductCard = ({ product }) => {
 
           <div className="flex items-center gap-1 rounded-full bg-yellow-50 px-2.5 py-1 text-sm font-semibold text-yellow-700">
             <FiStar size={14} className="fill-yellow-400" />
-            {product?.rating || 4.8}
+
+            {product?.ratings || 0}
           </div>
         </div>
 
@@ -47,23 +81,23 @@ const ProductCard = ({ product }) => {
 
         <div className="flex items-center gap-2 text-sm text-gray-500">
           <FiMapPin size={15} />
-          <span>
-            {product?.region || "Local Artisan"}
-          </span>
+
+          <span>{product?.region || "Local Artisan"}</span>
         </div>
 
         <div className="flex items-center justify-between pt-2">
           <div>
-            <p className="text-xs text-gray-400">
-              Starting From
-            </p>
+            <p className="text-xs text-gray-400">Starting From</p>
 
             <h2 className="text-2xl font-black text-gray-900">
               ₹{product?.price}
             </h2>
           </div>
 
-          <button className="flex items-center gap-2 rounded-2xl bg-black px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90">
+          <button
+            onClick={handleAddToCart}
+            className="flex items-center gap-2 rounded-2xl bg-black px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+          >
             <FiShoppingCart size={16} />
             Add
           </button>
