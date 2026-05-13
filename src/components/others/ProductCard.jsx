@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
-
 import { FiHeart, FiMapPin, FiShoppingCart, FiStar } from "react-icons/fi";
-
 import { useDispatch, useSelector } from "react-redux";
-
-import MoodBadge from "../others/MoodBadge";
-
+import MoodBadge from './MoodBadge'
 import { addToCart } from "../../redux/slices/cartSlice";
+
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../../redux/slices/wishlistSlice";
 
 import { showErrorToast, showSuccessToast } from "../others/Toast";
 
@@ -14,6 +15,12 @@ const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.auth);
+
+  const { wishlist } = useSelector((state) => state.wishlist);
+
+  const isWishlisted = wishlist?.products?.some(
+    (item) => item._id === product._id,
+  );
 
   const handleAddToCart = async () => {
     if (!user) {
@@ -34,6 +41,26 @@ const ProductCard = ({ product }) => {
     }
   };
 
+  const handleWishlist = async () => {
+    if (!user) {
+      return showErrorToast("Please login first");
+    }
+
+    try {
+      if (isWishlisted) {
+        await dispatch(removeFromWishlist(product._id)).unwrap();
+
+        showSuccessToast("Removed from wishlist");
+      } else {
+        await dispatch(addToWishlist(product._id)).unwrap();
+
+        showSuccessToast("Added to wishlist");
+      }
+    } catch (error) {
+      showErrorToast(error);
+    }
+  };
+
   return (
     <div className="group overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
       <div className="relative overflow-hidden">
@@ -43,8 +70,15 @@ const ProductCard = ({ product }) => {
           className="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
         />
 
-        <button className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-gray-700 shadow-md backdrop-blur transition hover:bg-black hover:text-white">
-          <FiHeart size={18} />
+        <button
+          onClick={handleWishlist}
+          className={`absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full shadow-md backdrop-blur transition ${
+            isWishlisted
+              ? "bg-red-500 text-white"
+              : "bg-white/90 text-gray-700 hover:bg-black hover:text-white"
+          }`}
+        >
+          <FiHeart size={18} className={isWishlisted ? "fill-white" : ""} />
         </button>
 
         {product?.moodTags?.[0] && (

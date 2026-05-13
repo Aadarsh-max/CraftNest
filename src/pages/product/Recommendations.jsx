@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FiSparkles } from "react-icons/fi";
+import { FiZap } from "react-icons/fi";
 import Loader from "../../components/comman/Loader";
 import ProductCard from "../../components/others/ProductCard";
 import { fetchRecommendations } from "../../redux/slices/aiSlice";
@@ -38,7 +38,7 @@ const Recommendations = () => {
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <div className="inline-flex items-center gap-3 rounded-full bg-black px-5 py-3 text-sm font-semibold text-white">
-                <FiSparkles />
+                <FiZap />
                 AI Powered
               </div>
 
