@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { FiMapPin, FiPackage, FiSearch, FiShield } from "react-icons/fi";
 
-import Loader from "../../components/others/Loader";
+import Loader from '../../components/comman/Loader'
 
 import { fetchArtisans } from "../../redux/slices/artisanSlice";
 

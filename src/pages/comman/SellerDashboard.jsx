@@ -13,7 +13,7 @@ import {
   FiXCircle,
 } from "react-icons/fi";
 
-import Loader from "../../components/others/Loader";
+import Loader from '../../components/comman/Loader'
 
 import ProductFormModal from "../../components/product/ProductFormModal";
 
