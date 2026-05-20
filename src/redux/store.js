@@ -10,6 +10,7 @@ import orderReducer from "./slices/orderSlice";
 import reviewReducer from "./slices/reviewSlice";
 import aiReducer from "./slices/aiSlice";
 import wishlistReducer from "./slices/wishlistSlice";
+import artisanReducer from "./slices/artisanSlice";
 
 export const store = configureStore({
   reducer: {
@@ -23,5 +24,6 @@ export const store = configureStore({
     review: reviewReducer,
     ai: aiReducer,
     wishlist: wishlistReducer,
+    artisan: artisanReducer,
   },
 });
