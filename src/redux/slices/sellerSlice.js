@@ -4,44 +4,102 @@ import {
 } from "@reduxjs/toolkit";
 
 import {
-  getSellerOrdersAPI,
+  createProductAPI,
+  deleteProductAPI,
   getSellerProductsAPI,
+  updateProductAPI,
 } from "../../services/sellerService";
 
-export const fetchSellerProducts = createAsyncThunk(
-  "seller/fetchProducts",
-  async (_, thunkAPI) => {
-    try {
-      return await getSellerProductsAPI();
-    } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error.response?.data?.message ||
-          "Failed to fetch seller products"
-      );
+export const fetchSellerProducts =
+  createAsyncThunk(
+    "seller/fetchProducts",
+    async (_, thunkAPI) => {
+      try {
+        return await getSellerProductsAPI();
+      } catch (error) {
+        return thunkAPI.rejectWithValue(
+          error.response?.data
+            ?.message ||
+            "Failed to fetch seller products"
+        );
+      }
     }
-  }
-);
+  );
 
-export const fetchSellerOrders = createAsyncThunk(
-  "seller/fetchOrders",
-  async (_, thunkAPI) => {
-    try {
-      return await getSellerOrdersAPI();
-    } catch (error) {
-      return thunkAPI.rejectWithValue(
-        error.response?.data?.message ||
-          "Failed to fetch seller orders"
-      );
+export const createProduct =
+  createAsyncThunk(
+    "seller/createProduct",
+    async (
+      productData,
+      thunkAPI
+    ) => {
+      try {
+        return await createProductAPI(
+          productData
+        );
+      } catch (error) {
+        return thunkAPI.rejectWithValue(
+          error.response?.data
+            ?.message ||
+            "Failed to create product"
+        );
+      }
     }
-  }
-);
+  );
+
+export const updateProduct =
+  createAsyncThunk(
+    "seller/updateProduct",
+    async (
+      {
+        productId,
+        productData,
+      },
+      thunkAPI
+    ) => {
+      try {
+        return await updateProductAPI({
+          productId,
+          productData,
+        });
+      } catch (error) {
+        return thunkAPI.rejectWithValue(
+          error.response?.data
+            ?.message ||
+            "Failed to update product"
+        );
+      }
+    }
+  );
+
+export const deleteProduct =
+  createAsyncThunk(
+    "seller/deleteProduct",
+    async (
+      productId,
+      thunkAPI
+    ) => {
+      try {
+        await deleteProductAPI(
+          productId
+        );
+
+        return productId;
+      } catch (error) {
+        return thunkAPI.rejectWithValue(
+          error.response?.data
+            ?.message ||
+            "Failed to delete product"
+        );
+      }
+    }
+  );
 
 const sellerSlice = createSlice({
   name: "seller",
 
   initialState: {
     products: [],
-    orders: [],
     loading: false,
     error: null,
   },
@@ -51,15 +109,20 @@ const sellerSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
-      .addCase(fetchSellerProducts.pending, (state) => {
-        state.loading = true;
-      })
+      .addCase(
+        fetchSellerProducts.pending,
+        (state) => {
+          state.loading = true;
+        }
+      )
 
       .addCase(
         fetchSellerProducts.fulfilled,
         (state, action) => {
           state.loading = false;
-          state.products = action.payload;
+
+          state.products =
+            action.payload;
         }
       )
 
@@ -67,27 +130,44 @@ const sellerSlice = createSlice({
         fetchSellerProducts.rejected,
         (state, action) => {
           state.loading = false;
-          state.error = action.payload;
-        }
-      )
 
-      .addCase(fetchSellerOrders.pending, (state) => {
-        state.loading = true;
-      })
-
-      .addCase(
-        fetchSellerOrders.fulfilled,
-        (state, action) => {
-          state.loading = false;
-          state.orders = action.payload;
+          state.error =
+            action.payload;
         }
       )
 
       .addCase(
-        fetchSellerOrders.rejected,
+        createProduct.fulfilled,
         (state, action) => {
-          state.loading = false;
-          state.error = action.payload;
+          state.products.unshift(
+            action.payload
+          );
+        }
+      )
+
+      .addCase(
+        updateProduct.fulfilled,
+        (state, action) => {
+          state.products =
+            state.products.map(
+              (product) =>
+                product._id ===
+                action.payload._id
+                  ? action.payload
+                  : product
+            );
+        }
+      )
+
+      .addCase(
+        deleteProduct.fulfilled,
+        (state, action) => {
+          state.products =
+            state.products.filter(
+              (product) =>
+                product._id !==
+                action.payload
+            );
         }
       );
   },
