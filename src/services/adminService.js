@@ -13,17 +13,15 @@ export const getAllProductsAPI = async () => {
 };
 
 export const approveProductAPI = async (id) => {
-  const { data } = await api.put(
-    `/admin/products/${id}/approve`
-  );
+  const { data } = await api.put(`/admin/products/${id}/approve`);
 
   return data;
 };
 
 export const verifySellerAPI = async (id) => {
-  const { data } = await api.put(
-    `/admin/users/${id}/verify`
-  );
+  const { data } = await api.put(`/admin/users/${id}/verify`);
 
   return data;
 };
+
+

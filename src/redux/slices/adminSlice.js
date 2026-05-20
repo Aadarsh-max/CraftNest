@@ -1,7 +1,4 @@
-import {
-  createSlice,
-  createAsyncThunk,
-} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import {
   getAllUsersAPI,
@@ -17,11 +14,10 @@ export const fetchAdminUsers = createAsyncThunk(
       return await getAllUsersAPI();
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data?.message ||
-          "Failed to fetch users"
+        error.response?.data?.message || "Failed to fetch users",
       );
     }
-  }
+  },
 );
 
 export const fetchAdminProducts = createAsyncThunk(
@@ -31,43 +27,40 @@ export const fetchAdminProducts = createAsyncThunk(
       return await getAllProductsAPI();
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data?.message ||
-          "Failed to fetch products"
+        error.response?.data?.message || "Failed to fetch products",
       );
     }
-  }
+  },
 );
 
 export const approveProduct = createAsyncThunk(
   "admin/approveProduct",
-  async (id, thunkAPI) => {
+  async (productId, thunkAPI) => {
     try {
-      await approveProductAPI(id);
+      await approveProductAPI(productId);
 
-      return id;
+      return productId;
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data?.message ||
-          "Approval failed"
+        error.response?.data?.message || "Approval failed",
       );
     }
-  }
+  },
 );
 
 export const verifySeller = createAsyncThunk(
   "admin/verifySeller",
-  async (id, thunkAPI) => {
+  async (sellerId, thunkAPI) => {
     try {
-      await verifySellerAPI(id);
+      await verifySellerAPI(sellerId);
 
-      return id;
+      return sellerId;
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data?.message ||
-          "Verification failed"
+        error.response?.data?.message || "Verification failed",
       );
     }
-  }
+  },
 );
 
 const adminSlice = createSlice({
@@ -85,58 +78,66 @@ const adminSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
+      // FETCH USERS
+
       .addCase(fetchAdminUsers.pending, (state) => {
         state.loading = true;
       })
 
       .addCase(fetchAdminUsers.fulfilled, (state, action) => {
         state.loading = false;
+
         state.users = action.payload;
       })
 
       .addCase(fetchAdminUsers.rejected, (state, action) => {
         state.loading = false;
+
         state.error = action.payload;
       })
+
+      // FETCH PRODUCTS
 
       .addCase(fetchAdminProducts.pending, (state) => {
         state.loading = true;
       })
 
-      .addCase(
-        fetchAdminProducts.fulfilled,
-        (state, action) => {
-          state.loading = false;
-          state.products = action.payload;
-        }
-      )
+      .addCase(fetchAdminProducts.fulfilled, (state, action) => {
+        state.loading = false;
 
-      .addCase(
-        fetchAdminProducts.rejected,
-        (state, action) => {
-          state.loading = false;
-          state.error = action.payload;
-        }
-      )
-
-      .addCase(approveProduct.fulfilled, (state, action) => {
-        const product = state.products.find(
-          (item) => item._id === action.payload
-        );
-
-        if (product) {
-          product.isApproved = true;
-        }
+        state.products = action.payload;
       })
 
-      .addCase(verifySeller.fulfilled, (state, action) => {
-        const seller = state.users.find(
-          (item) => item._id === action.payload
-        );
+      .addCase(fetchAdminProducts.rejected, (state, action) => {
+        state.loading = false;
 
-        if (seller) {
-          seller.isVerifiedSeller = true;
-        }
+        state.error = action.payload;
+      })
+
+      // APPROVE PRODUCT
+
+      .addCase(approveProduct.fulfilled, (state, action) => {
+        state.products = state.products.map((product) =>
+          product._id === action.payload
+            ? {
+                ...product,
+                isApproved: true,
+              }
+            : product,
+        );
+      })
+
+      // VERIFY SELLER
+
+      .addCase(verifySeller.fulfilled, (state, action) => {
+        state.users = state.users.map((user) =>
+          user._id === action.payload
+            ? {
+                ...user,
+                isVerifiedSeller: true,
+              }
+            : user,
+        );
       });
   },
 });
