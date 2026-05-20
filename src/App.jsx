@@ -21,6 +21,7 @@ import AdminPanel from "./pages/comman/AdminPanel";
 import Recommendations from "./pages/product/Recommendations";
 import Wishlist from "./pages/product/Wishlist";
 import NotFound from "./pages/comman/NotFound";
+import Artisans from "./pages/comman/Artisans";
 
 const App = () => {
   return (
@@ -65,6 +66,7 @@ const App = () => {
             <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
               <Route path="/admin/dashboard" element={<AdminPanel />} />
             </Route>
+            <Route path="/artisans" element={<Artisans />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
