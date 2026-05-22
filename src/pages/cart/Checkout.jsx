@@ -140,7 +140,7 @@ const Checkout = () => {
           <h2 className="text-3xl font-black text-gray-900">Order Summary</h2>
 
           <div className="mt-10 space-y-5">
-            {cart.items.map((item) => (
+            {!cart?.items?.map((item) => (
               <div key={item.product._id} className="flex items-center gap-4">
                 <img
                   src={item.product.images?.[0]}

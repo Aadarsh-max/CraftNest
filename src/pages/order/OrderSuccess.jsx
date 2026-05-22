@@ -1,9 +1,43 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+
 import { FiArrowRight, FiCheckCircle, FiShoppingBag } from "react-icons/fi";
-import { useSelector } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
+
+import { useEffect } from "react";
+
+import { fetchOrderById } from "../../redux/slices/orderSlice";
+
+import api from "../../services/api";
 
 const OrderSuccess = () => {
+  const dispatch = useDispatch();
+
   const { order } = useSelector((state) => state.order);
+
+  const [searchParams] = useSearchParams();
+
+  const orderId = searchParams.get("orderId");
+
+  useEffect(() => {
+    const markOrderPaid = async () => {
+      try {
+        await api.put(`/payments/${orderId}/pay`, {
+          id: "stripe-session",
+
+          status: "COMPLETED",
+        });
+
+        dispatch(fetchOrderById(orderId));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (orderId) {
+      markOrderPaid();
+    }
+  }, [orderId, dispatch]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-50 px-5 py-16">
@@ -24,8 +58,7 @@ const OrderSuccess = () => {
           </h1>
 
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-gray-500">
-            Thank you for supporting local artisans through CraftNest. Your
-            order has been placed successfully and is now being processed.
+            Thank you for supporting local artisans through CraftNest.
           </p>
         </div>
 
@@ -44,11 +77,11 @@ const OrderSuccess = () => {
 
               <div>
                 <p className="text-sm font-semibold uppercase tracking-wider text-gray-400">
-                  Payment Method
+                  Payment Status
                 </p>
 
-                <h2 className="mt-3 text-2xl font-black text-gray-900">
-                  {order.paymentMethod}
+                <h2 className="mt-3 text-2xl font-black text-green-600">
+                  Paid
                 </h2>
               </div>
 
@@ -81,7 +114,8 @@ const OrderSuccess = () => {
                     </h3>
 
                     <p className="mt-2 text-sm text-gray-500">
-                      Quantity: {item.quantity}
+                      Quantity:
+                      {item.quantity}
                     </p>
                   </div>
 
