@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
-import { FiHeart, FiMapPin, FiShoppingCart, FiStar } from "react-icons/fi";
+import {
+  FiHeart,
+  FiMapPin,
+  FiShoppingCart,
+  FiStar,
+  FiPackage,
+} from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import MoodBadge from "./MoodBadge";
 import { addToCart } from "../../redux/slices/cartSlice";

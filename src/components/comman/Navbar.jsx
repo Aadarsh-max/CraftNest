@@ -11,7 +11,8 @@ import {
   FiUser,
   FiX,
   FiShoppingBag,
-  FiPackage
+  FiPackage,
+  FiShield,
 } from "react-icons/fi";
 
 import { useDispatch, useSelector } from "react-redux";
