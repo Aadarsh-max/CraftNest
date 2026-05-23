@@ -61,7 +61,7 @@ const Home = () => {
             <div className="mt-14 grid grid-cols-3 gap-6">
               <div className="group/stat cursor-pointer rounded-2xl bg-white p-4 shadow-[0_4px_15px_-5px_rgba(124,58,237,0.1)] ring-1 ring-violet-50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:ring-violet-200">
                 <h2 className="bg-linear-to-r from-violet-600 to-pink-500 bg-clip-text text-4xl font-black text-transparent transition-transform duration-300 group-hover/stat:scale-110 origin-left">
-                  100+
+                  Best
                 </h2>
 
                 <p className="mt-2 text-sm font-bold tracking-wide text-slate-400 group-hover/stat:text-violet-500 transition-colors duration-300">
