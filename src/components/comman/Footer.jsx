@@ -41,18 +41,7 @@ const Footer = () => {
             >
               <FiFacebook size={18} />
             </a>
-            <a
-              href="/"
-              className="cursor-pointer flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-50 text-slate-400 ring-1 ring-slate-100 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-violet-600 hover:text-white hover:shadow-lg hover:shadow-violet-600/30 active:scale-95"
-            >
-              <FiTwitter size={18} />
-            </a>
-            <a
-              href="/"
-              className="cursor-pointer flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-50 text-slate-400 ring-1 ring-slate-100 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-violet-600 hover:text-white hover:shadow-lg hover:shadow-violet-600/30 active:scale-95"
-            >
-              <FiYoutube size={18} />
-            </a>
+           
           </div>
         </div>
 
@@ -102,28 +91,10 @@ const Footer = () => {
               Contact Us
             </Link>
             <Link
-              to="/faq"
-              className="cursor-pointer w-fit text-sm font-bold text-slate-500 transition-all duration-300 hover:translate-x-1 hover:text-violet-600"
-            >
-              FAQs
-            </Link>
-            <Link
               to="/orders"
               className="cursor-pointer w-fit text-sm font-bold text-slate-500 transition-all duration-300 hover:translate-x-1 hover:text-violet-600"
             >
               Order Tracking
-            </Link>
-            <Link
-              to="/privacy"
-              className="cursor-pointer w-fit text-sm font-bold text-slate-500 transition-all duration-300 hover:translate-x-1 hover:text-violet-600"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              to="/terms"
-              className="cursor-pointer w-fit text-sm font-bold text-slate-500 transition-all duration-300 hover:translate-x-1 hover:text-violet-600"
-            >
-              Terms & Conditions
             </Link>
           </div>
         </div>
@@ -136,7 +107,7 @@ const Footer = () => {
                 <FiMapPin size={18} />
               </div>
               <p className="mt-1 text-sm font-medium leading-relaxed text-slate-500 transition-colors duration-300 group-hover/contact:text-violet-700">
-                Boisar, Maharashtra, India
+                India
               </p>
             </div>
 
@@ -145,7 +116,7 @@ const Footer = () => {
                 <FiMail size={18} />
               </div>
               <p className="text-sm font-medium text-slate-500 transition-colors duration-300 group-hover/contact:text-violet-700">
-                support@craftnest.com
+                hulk42744@gmail.com
               </p>
             </div>
 
@@ -154,7 +125,7 @@ const Footer = () => {
                 <FiPhone size={18} />
               </div>
               <p className="text-sm font-medium text-slate-500 transition-colors duration-300 group-hover/contact:text-violet-700">
-                +91 98765 43210
+                +91 7620457148
               </p>
             </div>
           </div>
