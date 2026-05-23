@@ -54,7 +54,7 @@ const Artisans = () => {
             <FiSearch className="text-xl text-slate-400 transition-transform duration-500 ease-out group-focus-within:scale-110 group-focus-within:text-violet-600" />
             <input
               type="text"
-              placeholder="Search artisans by name or region..."
+              placeholder="Search artisans by name..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="peer w-full bg-transparent py-4 text-sm font-medium text-slate-900 placeholder-slate-400 outline-none transition-all duration-300"
