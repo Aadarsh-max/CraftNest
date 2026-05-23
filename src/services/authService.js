@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/api/auth";
+const API_URL = "https://craftnest-backend-eake.onrender.com/api/auth";
 
 export const registerUserAPI = async (userData) => {
   const { data } = await axios.post(
