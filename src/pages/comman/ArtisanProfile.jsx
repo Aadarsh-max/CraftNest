@@ -173,7 +173,7 @@ const ArtisanProfile = () => {
             <div 
               key={product._id} 
               className="transition-all duration-500 ease-out animate-[fadeInUp_0.6s_ease-out_forwards]"
-              style={{ animationDelay: `${index * 100}ms`, opacity: 0 }}
+              style={{ animationDelay: `${index * 100}ms` }}
             >
               <ProductCard product={product} />
             </div>
