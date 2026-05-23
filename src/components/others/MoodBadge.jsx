@@ -14,9 +14,9 @@ const MoodBadge = ({ mood }) => {
 
   return (
     <span
-      className={`inline-flex items-center rounded-full px-4 py-1.5 text-xs font-semibold capitalize tracking-wide ${
+      className={`inline-flex items-center rounded-full px-4 py-1.5 text-xs font-black capitalize tracking-wider shadow-sm ring-1 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-md ${
         moodStyles[normalizedMood] ||
-        "bg-gray-100 text-gray-700"
+        "bg-violet-50 text-violet-700 ring-violet-100 hover:bg-violet-100 hover:shadow-violet-200"
       }`}
     >
       {mood}

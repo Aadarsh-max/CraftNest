@@ -6,59 +6,75 @@ import {
   FiXCircle,
 } from "react-icons/fi";
 
-export const showSuccessToast = (message) => {
-  toast.custom(() => (
-    <div className="flex items-center gap-3 rounded-2xl border border-green-100 bg-white px-5 py-4 shadow-xl">
-      <div className="rounded-full bg-green-100 p-2 text-green-600">
-        <FiCheckCircle size={18} />
-      </div>
+const ToastContainer = ({
+  icon,
+  children,
+  borderColor,
+  bgColor,
+  iconBgColor,
+  iconColor,
+}) => (
+  <div
+    className={`flex items-center gap-4 rounded-3xl border ${borderColor} ${bgColor} px-6 py-4 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.15)] animate-[fadeInUp_0.3s_ease-out]`}
+  >
+    <div className={`rounded-full ${iconBgColor} ${iconColor} p-2`}>{icon}</div>
+    <p className="text-sm font-bold text-slate-900 pr-2">{children}</p>
+  </div>
+);
 
-      <p className="text-sm font-medium text-gray-800">
-        {message}
-      </p>
-    </div>
+export const showSuccessToast = (message) => {
+  toast.custom((t) => (
+    <ToastContainer
+      icon={<FiCheckCircle size={20} />}
+      borderColor="border-emerald-100"
+      bgColor="bg-white"
+      iconBgColor="bg-emerald-50"
+      iconColor="text-emerald-600"
+    >
+      {message}
+    </ToastContainer>
   ));
 };
 
 export const showErrorToast = (message) => {
-  toast.custom(() => (
-    <div className="flex items-center gap-3 rounded-2xl border border-red-100 bg-white px-5 py-4 shadow-xl">
-      <div className="rounded-full bg-red-100 p-2 text-red-600">
-        <FiXCircle size={18} />
-      </div>
-
-      <p className="text-sm font-medium text-gray-800">
-        {message}
-      </p>
-    </div>
+  toast.custom((t) => (
+    <ToastContainer
+      icon={<FiXCircle size={20} />}
+      borderColor="border-pink-100"
+      bgColor="bg-white"
+      iconBgColor="bg-pink-50"
+      iconColor="text-pink-600"
+    >
+      {message}
+    </ToastContainer>
   ));
 };
 
 export const showInfoToast = (message) => {
-  toast.custom(() => (
-    <div className="flex items-center gap-3 rounded-2xl border border-blue-100 bg-white px-5 py-4 shadow-xl">
-      <div className="rounded-full bg-blue-100 p-2 text-blue-600">
-        <FiInfo size={18} />
-      </div>
-
-      <p className="text-sm font-medium text-gray-800">
-        {message}
-      </p>
-    </div>
+  toast.custom((t) => (
+    <ToastContainer
+      icon={<FiInfo size={20} />}
+      borderColor="border-violet-100"
+      bgColor="bg-white"
+      iconBgColor="bg-violet-50"
+      iconColor="text-violet-600"
+    >
+      {message}
+    </ToastContainer>
   ));
 };
 
 export const showWarningToast = (message) => {
-  toast.custom(() => (
-    <div className="flex items-center gap-3 rounded-2xl border border-yellow-100 bg-white px-5 py-4 shadow-xl">
-      <div className="rounded-full bg-yellow-100 p-2 text-yellow-600">
-        <FiAlertCircle size={18} />
-      </div>
-
-      <p className="text-sm font-medium text-gray-800">
-        {message}
-      </p>
-    </div>
+  toast.custom((t) => (
+    <ToastContainer
+      icon={<FiAlertCircle size={20} />}
+      borderColor="border-yellow-100"
+      bgColor="bg-white"
+      iconBgColor="bg-yellow-50"
+      iconColor="text-yellow-600"
+    >
+      {message}
+    </ToastContainer>
   ));
 };
 
@@ -68,7 +84,7 @@ const Toast = () => {
       position="top-right"
       reverseOrder={false}
       toastOptions={{
-        duration: 3000,
+        duration: 4000,
       }}
     />
   );

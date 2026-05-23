@@ -11,46 +11,45 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="border-t border-gray-100 bg-white">
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 lg:grid-cols-4 lg:px-10">
-        <div>
+    <footer className="relative overflow-hidden border-t border-slate-50 bg-white pt-16 animate-[fadeIn_0.8s_ease-out]">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-violet-50/40 via-white to-white"></div>
+
+      <div className="mx-auto grid max-w-7xl gap-12 px-5 pb-16 lg:grid-cols-4 lg:px-10">
+        <div className="flex flex-col items-start">
           <Link
             to="/"
-            className="text-3xl font-black tracking-tight text-gray-900"
+            className="cursor-pointer bg-linear-to-r from-violet-600 to-pink-500 bg-clip-text text-3xl font-black tracking-tight text-transparent transition-transform duration-500 hover:scale-[1.02] origin-left"
           >
             CraftNest
           </Link>
 
-          <p className="mt-5 text-sm leading-7 text-gray-500">
+          <p className="mt-5 text-sm font-medium leading-relaxed text-slate-500">
             Discover handcrafted products made with creativity, passion, and
             authenticity from talented artisans around the world.
           </p>
 
-          <div className="mt-6 flex items-center gap-3">
+          <div className="mt-8 flex items-center gap-4">
             <a
               href="/"
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-gray-700 transition hover:bg-gray-200"
+              className="cursor-pointer flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-50 text-slate-400 ring-1 ring-slate-100 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-violet-600 hover:text-white hover:shadow-lg hover:shadow-violet-600/30 active:scale-95"
             >
               <FiInstagram size={18} />
             </a>
-
             <a
               href="/"
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-gray-700 transition hover:bg-gray-200"
+              className="cursor-pointer flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-50 text-slate-400 ring-1 ring-slate-100 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-violet-600 hover:text-white hover:shadow-lg hover:shadow-violet-600/30 active:scale-95"
             >
               <FiFacebook size={18} />
             </a>
-
             <a
               href="/"
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-gray-700 transition hover:bg-gray-200"
+              className="cursor-pointer flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-50 text-slate-400 ring-1 ring-slate-100 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-violet-600 hover:text-white hover:shadow-lg hover:shadow-violet-600/30 active:scale-95"
             >
               <FiTwitter size={18} />
             </a>
-
             <a
               href="/"
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-gray-700 transition hover:bg-gray-200"
+              className="cursor-pointer flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-50 text-slate-400 ring-1 ring-slate-100 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-violet-600 hover:text-white hover:shadow-lg hover:shadow-violet-600/30 active:scale-95"
             >
               <FiYoutube size={18} />
             </a>
@@ -58,40 +57,35 @@ const Footer = () => {
         </div>
 
         <div>
-          <h3 className="text-lg font-bold text-gray-900">Quick Links</h3>
-
-          <div className="mt-5 flex flex-col gap-4">
+          <h3 className="text-lg font-black text-slate-900">Quick Links</h3>
+          <div className="mt-6 flex flex-col gap-4">
             <Link
               to="/"
-              className="text-sm text-gray-500 transition hover:text-black"
+              className="cursor-pointer w-fit text-sm font-bold text-slate-500 transition-all duration-300 hover:translate-x-1 hover:text-violet-600"
             >
               Home
             </Link>
-
             <Link
               to="/products"
-              className="text-sm text-gray-500 transition hover:text-black"
+              className="cursor-pointer w-fit text-sm font-bold text-slate-500 transition-all duration-300 hover:translate-x-1 hover:text-violet-600"
             >
               Shop
             </Link>
-
             <Link
               to="/recommendations"
-              className="text-sm text-gray-500 transition hover:text-black"
+              className="cursor-pointer w-fit text-sm font-bold text-slate-500 transition-all duration-300 hover:translate-x-1 hover:text-violet-600"
             >
               Recommendations
             </Link>
-
             <Link
               to="/wishlist"
-              className="text-sm text-gray-500 transition hover:text-black"
+              className="cursor-pointer w-fit text-sm font-bold text-slate-500 transition-all duration-300 hover:translate-x-1 hover:text-violet-600"
             >
               Wishlist
             </Link>
-
             <Link
               to="/cart"
-              className="text-sm text-gray-500 transition hover:text-black"
+              className="cursor-pointer w-fit text-sm font-bold text-slate-500 transition-all duration-300 hover:translate-x-1 hover:text-violet-600"
             >
               Cart
             </Link>
@@ -99,76 +93,67 @@ const Footer = () => {
         </div>
 
         <div>
-          <h3 className="text-lg font-bold text-gray-900">Customer Support</h3>
-
-          <div className="mt-5 flex flex-col gap-4">
+          <h3 className="text-lg font-black text-slate-900">Support & Legal</h3>
+          <div className="mt-6 flex flex-col gap-4">
             <Link
               to="/contact"
-              className="text-sm text-gray-500 transition hover:text-black"
+              className="cursor-pointer w-fit text-sm font-bold text-slate-500 transition-all duration-300 hover:translate-x-1 hover:text-violet-600"
             >
               Contact Us
             </Link>
-
             <Link
               to="/faq"
-              className="text-sm text-gray-500 transition hover:text-black"
+              className="cursor-pointer w-fit text-sm font-bold text-slate-500 transition-all duration-300 hover:translate-x-1 hover:text-violet-600"
             >
               FAQs
             </Link>
-
+            <Link
+              to="/orders"
+              className="cursor-pointer w-fit text-sm font-bold text-slate-500 transition-all duration-300 hover:translate-x-1 hover:text-violet-600"
+            >
+              Order Tracking
+            </Link>
             <Link
               to="/privacy"
-              className="text-sm text-gray-500 transition hover:text-black"
+              className="cursor-pointer w-fit text-sm font-bold text-slate-500 transition-all duration-300 hover:translate-x-1 hover:text-violet-600"
             >
               Privacy Policy
             </Link>
-
             <Link
               to="/terms"
-              className="text-sm text-gray-500 transition hover:text-black"
+              className="cursor-pointer w-fit text-sm font-bold text-slate-500 transition-all duration-300 hover:translate-x-1 hover:text-violet-600"
             >
               Terms & Conditions
-            </Link>
-
-            <Link
-              to="/orders"
-              className="text-sm text-gray-500 transition hover:text-black"
-            >
-              Order Tracking
             </Link>
           </div>
         </div>
 
         <div>
-          <h3 className="text-lg font-bold text-gray-900">Get In Touch</h3>
-
-          <div className="mt-5 flex flex-col gap-5">
-            <div className="flex items-start gap-3">
-              <div className="mt-1 rounded-full bg-gray-100 p-2 text-gray-700">
-                <FiMapPin size={16} />
+          <h3 className="text-lg font-black text-slate-900">Get In Touch</h3>
+          <div className="mt-6 flex flex-col gap-5">
+            <div className="group/contact cursor-pointer flex items-start gap-4 transition-all duration-300 hover:-translate-y-0.5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-50 text-violet-600 ring-1 ring-violet-100 transition-transform duration-300 group-hover/contact:scale-110 group-hover/contact:bg-violet-100">
+                <FiMapPin size={18} />
               </div>
-
-              <p className="text-sm leading-6 text-gray-500">
-                Mumbai, Maharashtra, India
+              <p className="mt-1 text-sm font-medium leading-relaxed text-slate-500 transition-colors duration-300 group-hover/contact:text-violet-700">
+                Boisar, Maharashtra, India
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
-              <div className="rounded-full bg-gray-100 p-2 text-gray-700">
-                <FiMail size={16} />
+            <div className="group/contact cursor-pointer flex items-center gap-4 transition-all duration-300 hover:-translate-y-0.5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-50 text-violet-600 ring-1 ring-violet-100 transition-transform duration-300 group-hover/contact:scale-110 group-hover/contact:bg-violet-100">
+                <FiMail size={18} />
               </div>
-
-              <p className="text-sm text-gray-500">
+              <p className="text-sm font-medium text-slate-500 transition-colors duration-300 group-hover/contact:text-violet-700">
                 support@craftnest.com
               </p>
             </div>
 
-            <div className="flex items-center gap-3">
-              <div className="rounded-full bg-gray-100 p-2 text-gray-700">
-                <FiPhone size={16} />
+            <div className="group/contact cursor-pointer flex items-center gap-4 transition-all duration-300 hover:-translate-y-0.5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-50 text-violet-600 ring-1 ring-violet-100 transition-transform duration-300 group-hover/contact:scale-110 group-hover/contact:bg-violet-100">
+                <FiPhone size={18} />
               </div>
-
-              <p className="text-sm text-gray-500">
+              <p className="text-sm font-medium text-slate-500 transition-colors duration-300 group-hover/contact:text-violet-700">
                 +91 98765 43210
               </p>
             </div>
@@ -176,34 +161,11 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="border-t border-gray-100">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-5 py-6 text-center lg:flex-row lg:px-10">
-          <p className="text-sm text-gray-500">
-            © 2026 CraftNest. All rights reserved.
+      <div className="border-t border-slate-100 bg-slate-50/50">
+        <div className="mx-auto flex max-w-7xl items-center justify-center px-5 py-6 text-center lg:px-10">
+          <p className="text-sm font-bold tracking-wide text-slate-400">
+            © {new Date().getFullYear()} CraftNest. All rights reserved.
           </p>
-
-          <div className="flex items-center gap-5">
-            <Link
-              to="/privacy"
-              className="text-sm text-gray-500 transition hover:text-black"
-            >
-              Privacy
-            </Link>
-
-            <Link
-              to="/terms"
-              className="text-sm text-gray-500 transition hover:text-black"
-            >
-              Terms
-            </Link>
-
-            <Link
-              to="/cookies"
-              className="text-sm text-gray-500 transition hover:text-black"
-            >
-              Cookies
-            </Link>
-          </div>
         </div>
       </div>
     </footer>
