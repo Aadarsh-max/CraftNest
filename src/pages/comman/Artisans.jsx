@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { FiMapPin, FiPackage, FiSearch, FiShield } from "react-icons/fi";
+import { FiMapPin, FiPackage, FiSearch, FiShield,FiUser } from "react-icons/fi";
 
 import Loader from "../../components/comman/Loader";
 

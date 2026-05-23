@@ -8,6 +8,8 @@ import {
   FiShield,
   FiStar,
   FiTruck,
+  FiHeart,
+  FiShoppingBag
 } from "react-icons/fi";
 
 import Loader from "../../components/comman/Loader";

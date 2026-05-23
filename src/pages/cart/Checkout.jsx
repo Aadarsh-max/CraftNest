@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { FiMapPin , FiMap , FiFlag , FiHash, FiGlobe , FiShoppingBag } from "react-icons/fi";
 import {
   createCheckoutSession,
   createOrder,

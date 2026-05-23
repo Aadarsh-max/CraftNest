@@ -15,10 +15,10 @@ export const createOrder = createAsyncThunk(
       return await createOrderAPI(orderData);
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data?.message || "Failed to create order",
+        error.response?.data?.message || "Failed to create order"
       );
     }
-  },
+  }
 );
 
 export const fetchMyOrders = createAsyncThunk(
@@ -28,10 +28,10 @@ export const fetchMyOrders = createAsyncThunk(
       return await getMyOrdersAPI();
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data?.message || "Failed to fetch orders",
+        error.response?.data?.message || "Failed to fetch orders"
       );
     }
-  },
+  }
 );
 
 export const fetchOrderById = createAsyncThunk(
@@ -41,10 +41,10 @@ export const fetchOrderById = createAsyncThunk(
       return await getOrderByIdAPI(id);
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data?.message || "Failed to fetch order",
+        error.response?.data?.message || "Failed to fetch order"
       );
     }
-  },
+  }
 );
 
 export const createCheckoutSession = createAsyncThunk(
@@ -54,10 +54,10 @@ export const createCheckoutSession = createAsyncThunk(
       return await createCheckoutSessionAPI(orderId);
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data?.message || "Payment failed",
+        error.response?.data?.message || "Payment failed"
       );
     }
-  },
+  }
 );
 
 const orderSlice = createSlice({
@@ -89,12 +89,32 @@ const orderSlice = createSlice({
         state.error = action.payload;
       })
 
+      .addCase(fetchMyOrders.pending, (state) => {
+        state.loading = true;
+      })
+
       .addCase(fetchMyOrders.fulfilled, (state, action) => {
+        state.loading = false;
         state.orders = action.payload;
       })
 
+      .addCase(fetchMyOrders.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(fetchOrderById.pending, (state) => {
+        state.loading = true;
+      })
+
       .addCase(fetchOrderById.fulfilled, (state, action) => {
+        state.loading = false;
         state.order = action.payload;
+      })
+
+      .addCase(fetchOrderById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

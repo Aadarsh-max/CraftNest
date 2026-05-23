@@ -10,6 +10,8 @@ import {
   FiShoppingCart,
   FiUser,
   FiX,
+  FiShoppingBag,
+  FiPackage
 } from "react-icons/fi";
 
 import { useDispatch, useSelector } from "react-redux";

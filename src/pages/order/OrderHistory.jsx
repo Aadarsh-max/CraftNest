@@ -1,8 +1,16 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { FiCheckCircle, FiClock, FiPackage } from "react-icons/fi";
+import {
+  FiCheckCircle,
+  FiClock,
+  FiPackage,
+  FiTruck,
+  FiBox,
+  FiMapPin,
+} from "react-icons/fi";
 
 import Loader from "../../components/comman/Loader";
 
@@ -11,7 +19,7 @@ import { fetchMyOrders } from "../../redux/slices/orderSlice";
 const OrderHistory = () => {
   const dispatch = useDispatch();
 
-  const { orders, loading } = useSelector((state) => state.order);
+  const { orders = [], loading = false } = useSelector((state) => state.order);
 
   useEffect(() => {
     dispatch(fetchMyOrders());
@@ -34,7 +42,7 @@ const OrderHistory = () => {
           </h1>
         </div>
 
-        {orders.length === 0 ? (
+        {!orders || orders.length === 0 ? (
           <div className="group/empty mt-16 rounded-[40px] border-2 border-dashed border-violet-100 bg-violet-50/30 py-24 text-center transition-all duration-500 hover:border-violet-300 hover:bg-violet-50/50">
             <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-white text-violet-400 shadow-[0_4px_20px_-5px_rgba(124,58,237,0.15)] transition-transform duration-500 group-hover/empty:-translate-y-2 group-hover/empty:scale-110 group-hover/empty:text-violet-600 group-hover/empty:shadow-[0_10px_30px_-10px_rgba(124,58,237,0.3)]">
               <FiPackage
@@ -59,6 +67,7 @@ const OrderHistory = () => {
               <div className="absolute inset-0 flex h-full w-full justify-center transform-[skew(-13deg)_translateX(-150%)] group-hover/btn:duration-1000 group-hover/btn:transform-[skew(-13deg)_translateX(150%)]">
                 <div className="w-12 bg-white/30" />
               </div>
+
               <span className="relative z-10 flex items-center gap-2">
                 Explore Products
               </span>
@@ -66,17 +75,20 @@ const OrderHistory = () => {
           </div>
         ) : (
           <div className="mt-14 space-y-8">
-            {orders.map((order, index) => (
+            {orders?.map((order, index) => (
               <div
                 key={order._id}
                 className="group/order rounded-[40px] bg-white p-8 shadow-[0_10px_40px_-10px_rgba(124,58,237,0.15)] ring-1 ring-violet-50 transition-all duration-700 hover:shadow-[0_20px_60px_-15px_rgba(124,58,237,0.3)] hover:ring-violet-100 animate-[fadeInUp_0.6s_ease-out_forwards]"
-                style={{ animationDelay: `${index * 100}ms`, opacity: 0 }}
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                  opacity: 0,
+                }}
               >
                 <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
                   <div>
                     <div className="flex flex-wrap items-center gap-4">
                       <h2 className="text-3xl font-black text-slate-900 transition-colors duration-300 group-hover/order:text-violet-900">
-                        Order #{order._id.slice(-6)}
+                        Order #{order._id?.slice(-6)}
                       </h2>
 
                       <div
@@ -140,13 +152,10 @@ const OrderHistory = () => {
                 </div>
 
                 <div className="mt-10 space-y-5">
-                  {order.orderItems.map((item, itemIndex) => (
+                  {order.orderItems?.map((item, itemIndex) => (
                     <div
                       key={item.product}
                       className="group/item flex flex-col gap-6 rounded-[30px] border border-slate-100 bg-white p-5 shadow-[0_4px_15px_-5px_rgba(0,0,0,0.05)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_30px_-10px_rgba(124,58,237,0.15)] hover:ring-1 hover:ring-violet-100 lg:flex-row lg:items-center"
-                      style={{
-                        animationDelay: `${index * 100 + itemIndex * 50}ms`,
-                      }}
                     >
                       <div className="overflow-hidden rounded-3xl shadow-sm transition-transform duration-500 group-hover/item:shadow-md lg:w-28">
                         {item.image ? (
@@ -156,44 +165,45 @@ const OrderHistory = () => {
                             className="h-28 w-full object-cover transition-transform duration-700 ease-out group-hover/item:scale-110 lg:w-28"
                           />
                         ) : (
-                          <div className="flex h-28 w-full items-center justify-center bg-violet-50 text-violet-300 transition-transform duration-700 group-hover/item:scale-110 lg:w-28">
+                          <div className="flex h-28 w-full items-center justify-center bg-violet-50 text-violet-300 lg:w-28">
                             <FiBox size={32} />
                           </div>
                         )}
                       </div>
 
                       <div className="flex-1">
-                        <h3 className="cursor-pointer text-xl font-black text-slate-900 transition-colors duration-300 hover:text-violet-600">
+                        <h3 className="text-xl font-black text-slate-900 transition-colors duration-300 hover:text-violet-600">
                           {item.name}
                         </h3>
 
                         <div className="mt-4 flex flex-wrap items-center gap-6 text-sm font-medium text-slate-500">
-                          <div className="flex items-center gap-2 rounded-xl bg-slate-50 px-4 py-2 ring-1 ring-slate-200/50 transition-colors duration-300 group-hover/item:bg-violet-50/50 group-hover/item:ring-violet-100">
-                            Qty:{" "}
-                            <span className="font-black text-slate-900 group-hover/item:text-violet-900">
+                          <div className="flex items-center gap-2 rounded-xl bg-slate-50 px-4 py-2 ring-1 ring-slate-200/50">
+                            Qty:
+                            <span className="font-black text-slate-900">
                               {item.quantity}
                             </span>
                           </div>
 
-                          <div className="flex items-center gap-2 rounded-xl bg-slate-50 px-4 py-2 ring-1 ring-slate-200/50 transition-colors duration-300 group-hover/item:bg-violet-50/50 group-hover/item:ring-violet-100">
-                            Price:{" "}
-                            <span className="font-black text-slate-900 group-hover/item:text-violet-900">
+                          <div className="flex items-center gap-2 rounded-xl bg-slate-50 px-4 py-2 ring-1 ring-slate-200/50">
+                            Price:
+                            <span className="font-black text-slate-900">
                               ₹{item.price}
                             </span>
                           </div>
                         </div>
                       </div>
 
-                      <h2 className="text-3xl font-black text-slate-900 transition-colors duration-300 group-hover/item:text-violet-900">
+                      <h2 className="text-3xl font-black text-slate-900">
                         ₹{item.price * item.quantity}
                       </h2>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-10 rounded-[30px] border-2 border-dashed border-slate-100 bg-slate-50/50 p-8 transition-colors duration-500 group-hover/order:border-violet-100 group-hover/order:bg-violet-50/30">
+                <div className="mt-10 rounded-[30px] border-2 border-dashed border-slate-100 bg-slate-50/50 p-8">
                   <div className="flex items-center gap-3">
                     <FiMapPin className="text-xl text-violet-500" />
+
                     <h3 className="text-xl font-black text-slate-900">
                       Shipping Address
                     </h3>
@@ -202,7 +212,7 @@ const OrderHistory = () => {
                   <p className="mt-4 text-base font-bold text-slate-500">
                     {order.shippingAddress?.address},{" "}
                     {order.shippingAddress?.city},{" "}
-                    {order.shippingAddress?.state} -{" "}
+                    {order.shippingAddress?.state} -
                     <span className="text-violet-600">
                       {order.shippingAddress?.postalCode}
                     </span>
