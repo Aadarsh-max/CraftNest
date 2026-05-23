@@ -263,7 +263,7 @@ const ProductDetail = () => {
                 <div
                   key={review._id}
                   className="group/review rounded-[30px] border border-slate-100 bg-white p-6 shadow-sm transition-all duration-500 animate-[fadeInUp_0.6s_ease-out_forwards] hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(124,58,237,0.15)] hover:ring-1 hover:ring-violet-100"
-                  style={{ animationDelay: `${index * 100}ms`, opacity: 0 }}
+                  style={{ animationDelay: `${index * 100}ms`}}
                 >
                   <div className="flex items-center justify-between">
                     <h3 className="text-xl font-black text-slate-900 transition-colors duration-300 group-hover/review:text-violet-700">
