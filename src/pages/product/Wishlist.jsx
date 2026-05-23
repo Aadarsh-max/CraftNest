@@ -109,7 +109,7 @@ return (
             <div
               key={product._id}
               className="group/card relative flex flex-col overflow-hidden rounded-[36px] bg-white shadow-[0_4px_20px_-5px_rgba(0,0,0,0.05)] ring-1 ring-slate-100 transition-all duration-500 animate-[fadeInUp_0.6s_ease-out_forwards] hover:-translate-y-2 hover:shadow-[0_15px_40px_-10px_rgba(124,58,237,0.2)] hover:ring-violet-100"
-              style={{ animationDelay: `${index * 100}ms`, opacity: 0 }}
+              style={{ animationDelay: `${index * 100}ms`}}
             >
               <div className="relative overflow-hidden">
                 <img
@@ -153,7 +153,7 @@ return (
 
                 <button
                   onClick={() => handleAddToCart(product._id)}
-                  className="cursor-pointer group/cart relative mt-8 flex w-full overflow-hidden rounded-2xl bg-linear-to-r from-violet-600 to-pink-500 py-4 text-sm font-bold tracking-wide text-white shadow-[0_8px_20px_-6px_rgba(124,58,237,0.5)] transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_15px_25px_-8px_rgba(236,72,153,0.6)] active:translate-y-1 active:scale-[0.97]"
+                  className="justify-center cursor-pointer group/cart relative mt-8 flex w-full overflow-hidden rounded-2xl bg-linear-to-r from-violet-600 to-pink-500 py-4 text-sm font-bold tracking-wide text-white shadow-[0_8px_20px_-6px_rgba(124,58,237,0.5)] transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_15px_25px_-8px_rgba(236,72,153,0.6)] active:translate-y-1 active:scale-[0.97]"
                 >
                   <div className="absolute inset-0 flex h-full w-full justify-center transform-[skew(-13deg)_translateX(-150%)] group-hover/cart:duration-1000 group-hover/cart:transform-[skew(-13deg)_translateX(150%)]">
                     <div className="w-12 bg-white/30" />

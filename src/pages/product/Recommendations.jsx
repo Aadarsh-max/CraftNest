@@ -110,7 +110,7 @@ const Recommendations = () => {
                 <div
                   key={product._id}
                   className="animate-[fadeInUp_0.6s_ease-out_forwards]"
-                  style={{ animationDelay: `${index * 100}ms`, opacity: 0 }}
+                  style={{ animationDelay: `${index * 100}ms`}}
                 >
                   <ProductCard product={product} />
                 </div>

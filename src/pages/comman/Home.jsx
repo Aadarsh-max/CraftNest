@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 
 import {
   FiArrowRight,
@@ -9,23 +7,10 @@ import {
   FiStar,
   FiTruck,
   FiHeart,
-  FiShoppingBag
+  FiShoppingBag,
 } from "react-icons/fi";
 
-import Loader from "../../components/comman/Loader";
-import ProductCard from "../../components/others/ProductCard";
-
-import { fetchProducts } from "../../redux/slices/productSlice";
-
 const Home = () => {
-  const dispatch = useDispatch();
-
-  const { products, loading } = useSelector((state) => state.product);
-
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
-
   return (
     <div className="bg-white">
       <section className="relative overflow-hidden border-b border-slate-50 bg-white shadow-[0_4px_30px_-10px_rgba(124,58,237,0.05)]">
@@ -57,6 +42,7 @@ const Home = () => {
                 <div className="absolute inset-0 flex h-full w-full justify-center transform-[skew(-13deg)_translateX(-150%)] group-hover/btn:duration-1000 group-hover/btn:transform-[skew(-13deg)_translateX(150%)]">
                   <div className="w-12 bg-white/30" />
                 </div>
+
                 <span className="relative z-10 flex items-center gap-2">
                   Explore Products
                   <FiArrowRight className="transition-transform duration-300 group-hover/btn:translate-x-1" />
@@ -75,8 +61,9 @@ const Home = () => {
             <div className="mt-14 grid grid-cols-3 gap-6">
               <div className="group/stat cursor-pointer rounded-2xl bg-white p-4 shadow-[0_4px_15px_-5px_rgba(124,58,237,0.1)] ring-1 ring-violet-50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:ring-violet-200">
                 <h2 className="bg-linear-to-r from-violet-600 to-pink-500 bg-clip-text text-4xl font-black text-transparent transition-transform duration-300 group-hover/stat:scale-110 origin-left">
-                  {products?.length || 0}+
+                  100+
                 </h2>
+
                 <p className="mt-2 text-sm font-bold tracking-wide text-slate-400 group-hover/stat:text-violet-500 transition-colors duration-300">
                   Products
                 </p>
@@ -86,6 +73,7 @@ const Home = () => {
                 <h2 className="bg-linear-to-r from-violet-600 to-pink-500 bg-clip-text text-4xl font-black text-transparent transition-transform duration-300 group-hover/stat:scale-110 origin-left">
                   AI
                 </h2>
+
                 <p className="mt-2 text-sm font-bold tracking-wide text-slate-400 group-hover/stat:text-violet-500 transition-colors duration-300">
                   Smart Magic
                 </p>
@@ -95,6 +83,7 @@ const Home = () => {
                 <h2 className="bg-linear-to-r from-violet-600 to-pink-500 bg-clip-text text-4xl font-black text-transparent transition-transform duration-300 group-hover/stat:scale-110 origin-left">
                   Local
                 </h2>
+
                 <p className="mt-2 text-sm font-bold tracking-wide text-slate-400 group-hover/stat:text-violet-500 transition-colors duration-300">
                   Artisans
                 </p>
@@ -169,65 +158,6 @@ const Home = () => {
             </p>
           </div>
         </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-10">
-        <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
-          <div className="group">
-            <p className="text-sm font-bold uppercase tracking-[0.2em] text-violet-600 transition-colors duration-300">
-              Featured Collection
-            </p>
-
-            <h2 className="mt-3 bg-linear-to-r from-violet-600 to-pink-500 bg-clip-text text-4xl font-black tracking-tight text-transparent transition-transform duration-500 group-hover:scale-[1.01] origin-left">
-              Trending Handmade Products
-            </h2>
-          </div>
-
-          <Link
-            to="/products"
-            className="cursor-pointer group/link flex items-center gap-3 rounded-full bg-violet-50 px-6 py-3 text-sm font-black text-violet-600 shadow-sm ring-1 ring-violet-100 transition-all duration-300 hover:-translate-y-1 hover:bg-violet-100 hover:shadow-md"
-          >
-            View All Products
-            <FiArrowRight className="transition-transform duration-300 group-hover/link:translate-x-1 group-hover/link:scale-110" />
-          </Link>
-        </div>
-
-        {loading ? (
-          <div className="mt-14 flex justify-center">
-            <Loader fullScreen={false} />
-          </div>
-        ) : (
-          <div className="mt-14 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-            {products?.slice(0, 6).map((product, index) => (
-              <div
-                key={product._id}
-                className="animate-[fadeInUp_0.6s_ease-out_forwards]"
-                style={{ animationDelay: `${index * 100}ms`, opacity: 0 }}
-              >
-                <ProductCard product={product} />
-              </div>
-            ))}
-          </div>
-        )}
-
-        {!loading && products?.length === 0 && (
-          <div className="group/empty cursor-pointer mt-20 rounded-[40px] border-2 border-dashed border-violet-100 bg-violet-50/30 py-24 text-center transition-all duration-500 hover:border-violet-300 hover:bg-violet-50/50">
-            <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-white text-violet-400 shadow-[0_4px_20px_-5px_rgba(124,58,237,0.15)] transition-transform duration-500 group-hover/empty:-translate-y-2 group-hover/empty:scale-110 group-hover/empty:text-violet-600 group-hover/empty:shadow-[0_10px_30px_-10px_rgba(124,58,237,0.3)]">
-              <FiShoppingBag
-                size={40}
-                className="transition-transform duration-500 group-hover/empty:rotate-12"
-              />
-            </div>
-
-            <h3 className="mt-8 text-3xl font-black text-slate-900 transition-colors duration-300 group-hover/empty:text-violet-900">
-              No Products Found
-            </h3>
-
-            <p className="mt-4 font-medium text-slate-500 transition-colors duration-300">
-              Products will appear here once artisans upload them.
-            </p>
-          </div>
-        )}
       </section>
     </div>
   );
