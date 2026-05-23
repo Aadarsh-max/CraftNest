@@ -7,6 +7,7 @@ import {
   FiMapPin,
   FiShoppingCart,
   FiStar,
+  FiArrowRight
 } from "react-icons/fi";
 
 import Loader from "../../components/comman/Loader";
