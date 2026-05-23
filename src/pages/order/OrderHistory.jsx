@@ -81,7 +81,6 @@ const OrderHistory = () => {
                 className="group/order rounded-[40px] bg-white p-8 shadow-[0_10px_40px_-10px_rgba(124,58,237,0.15)] ring-1 ring-violet-50 transition-all duration-700 hover:shadow-[0_20px_60px_-15px_rgba(124,58,237,0.3)] hover:ring-violet-100 animate-[fadeInUp_0.6s_ease-out_forwards]"
                 style={{
                   animationDelay: `${index * 100}ms`,
-                  opacity: 0,
                 }}
               >
                 <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
